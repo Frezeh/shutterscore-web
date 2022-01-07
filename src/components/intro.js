@@ -1,32 +1,54 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Paper,
-  Avatar,
   Button,
   TextField,
   Grid,
   CssBaseline,
   Typography,
-  Box,
   Checkbox,
 } from "@material-ui/core";
-import Payment from "@material-ui/icons/Payment";
-import {
-  makeStyles,
-  ThemeProvider,
-  createTheme,
-} from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import Carousel from "react-material-ui-carousel";
 import { Link } from "react-router-dom";
+import first from "../assets/surface1.png";
+import second from "../assets/bank.png";
+import third from "../assets/atm.png";
 
-function Item(props) {
+function Slider({ item }) {
   return (
-    <Paper>
-      <h2>{props.item.name}</h2>
-      <p>{props.item.description}</p>
-
-      <Button className="CheckButton">Check it out!</Button>
-    </Paper>
+    <>
+      <img
+        src={item.image}
+        alt="first"
+        style={{ width: "180px", height: "167px" }}
+      />
+      <Typography
+        style={{
+          fontSize: 22,
+          fontWeight: "bold",
+          marginTop: 80,
+          marginLeft: 40,
+          color: "#000E48",
+        }}
+      >
+        {item.title}
+      </Typography>
+      <div style={{ width: 300, justifyContent: "center" }}>
+        <Typography
+          style={{
+            fontSize: 14,
+            marginTop: 40,
+            color: "#000E48",
+            textAlign: "center",
+            letterSpacing: "0px",
+            opacity: 1,
+          }}
+        >
+          {item.text}
+        </Typography>
+      </div>
+    </>
   );
 }
 
@@ -35,7 +57,6 @@ const useStyles = makeStyles((theme) => ({
     height: "100vh",
   },
   image: {
-    // backgroundImage: 'url(https://source.unsplash.com/random)',
     backgroundRepeat: "no-repeat",
     backgroundColor:
       theme.palette.type === "light"
@@ -52,25 +73,35 @@ const useStyles = makeStyles((theme) => ({
   },
   carousel: {
     animation: "fade",
-    width: "752px",
-    height: "768px",
+    width: "-100vh",
+    height: "-100vh",
     opacity: 1,
   },
 }));
 
 export default function Intro() {
-  const classes = useStyles();
-
-  let items = [
+  const data = [
     {
-      name: "Random Name #1",
-      description: "Probably the most random thing you have ever seen!",
+      id: 1,
+      title: "Pay with card",
+      text: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,",
+      image: `${first}`,
     },
     {
-      name: "Random Name #2",
-      description: "Hello World!",
+      id: 2,
+      title: "Grow your funds",
+      text: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,",
+      image: `${second}`,
+    },
+    {
+      id: 3,
+      title: "Pay anywhere, anytime",
+      text: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,",
+      image: `${third}`,
     },
   ];
+
+  const classes = useStyles();
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -169,10 +200,19 @@ export default function Intro() {
         square
         style={{ backgroundColor: "#80BFFF" }}
       >
-        <div className={classes.paper}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100%",
+            width: "100%",
+          }}
+        >
           <Carousel className={classes.carousel}>
-            {items.map((item, i) => (
-              <Item key={i} item={item} />
+            {data.map((item, i) => (
+              <Slider key={i} item={item} />
             ))}
           </Carousel>
         </div>

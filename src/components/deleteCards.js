@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Divider, Typography, Grid } from "@material-ui/core";
+import { Divider, Typography, Grid } from "@material-ui/core";
 
 export const FirstCard = () => {
   return (

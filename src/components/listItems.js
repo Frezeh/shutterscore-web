@@ -1,11 +1,8 @@
 import * as React from "react";
-import {
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  ListItemButton,
-} from "@material-ui/core";
+import { ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
 import { Home, CreditCard, DeleteOutline } from "@material-ui/icons";
+import image from "../assets/logout.png";
+import { useHistory } from 'react-router-dom';
 
 export const MainListItems = ({
   setToggleDashboard,
@@ -13,6 +10,7 @@ export const MainListItems = ({
   setToggleDeleteCards,
 }) => {
   const [selectedIndex, setSelectedIndex] = React.useState(0);
+  const history = useHistory();
 
   const handleDashBoard = (event, index) => {
     setSelectedIndex(index);
@@ -33,6 +31,10 @@ export const MainListItems = ({
     setToggleDashboard(false);
     setToggleMyCards(false);
     setToggleDeleteCards(true);
+  };
+
+  const handleLogout = () => {
+    history.push('/');
   };
 
   return (
@@ -67,6 +69,21 @@ export const MainListItems = ({
           <DeleteOutline />
         </ListItemIcon>
         <ListItemText primary="Delete cards" />
+      </ListItem>
+      <ListItem
+        button
+        selected={selectedIndex === 2}
+        onClick={(event) => handleLogout(event, 2)}
+        style={{ marginTop: 500 }}
+      >
+        <ListItemIcon>
+          <img
+            src={image}
+            alt="first"
+            style={{ width: "11px", height: "13px" }}
+          />{" "}
+        </ListItemIcon>
+        <ListItemText primary="Logout" />
       </ListItem>
     </div>
   );
