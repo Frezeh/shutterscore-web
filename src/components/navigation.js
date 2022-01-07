@@ -2,28 +2,22 @@ import * as React from "react";
 import { styled, createTheme, ThemeProvider } from "@material-ui/core/styles";
 import {
   Paper,
-  Avatar,
-  Button,
-  TextField,
-  Link,
   Grid,
   CssBaseline,
-  Typography,
   Box,
   Drawer,
   Toolbar,
   AppBar,
   List,
   Divider,
-  Badge,
   Container,
   IconButton,
 } from "@material-ui/core";
 import { ChevronLeft, Menu } from "@material-ui/icons";
 import { MainListItems } from "./listItems";
 import { Cards, Dashboard, TransactionHistory } from "./dashboard";
-import { Activity, MyCards } from "./myCards";
-import { FirstCard, Info, DeleteCards } from "./deleteCards";
+import { Activity, MyCards, AllCards } from "./myCards";
+import { FirstCard, Info, DeleteCards, CardInfo } from "./deleteCards";
 
 const drawerWidth = 240;
 
@@ -154,7 +148,7 @@ function DashboardContent() {
                 </Grid>
                 <Grid item xs={12}>
                   <Paper
-                    sx={{ p: 2, display: "flex", flexDirection: "column" }}
+                    sx={{ p: 2, display: "flex", flexDirection: "column", borderRadius: "50%" }}
                   >
                     <TransactionHistory />
                   </Paper>
@@ -169,7 +163,7 @@ function DashboardContent() {
                   <Divider />
                 </Grid>
                 <Grid item xs={12} md={12} lg={12}>
-                  <Cards />
+                  <AllCards />
                 </Grid>
                 <Grid item xs={12}>
                   <Paper
@@ -190,13 +184,32 @@ function DashboardContent() {
                 <Grid item xs={12} md={12} lg={12}>
                   <FirstCard />
                 </Grid>
-                <Grid item xs={12}>
-                  <Paper
-                    sx={{ p: 2, display: "flex", flexDirection: "column" }}
-                  >
-                    <Info />
-                  </Paper>
-                </Grid>
+              {/* Activity */}
+              <Grid item xs={12} md={8} lg={8}>
+                <Paper
+                  sx={{
+                    p: 2,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    height: 240,
+                  }}
+                >
+                  <Info />
+                </Paper>
+              </Grid>
+              {/* Card Info */}
+              <Grid item xs={12} md={4} lg={4}>
+                <Paper
+                  sx={{
+                    p: 2,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    height: 240,
+                  }}
+                >
+                  <CardInfo />
+                </Paper>
+              </Grid>
               </Grid>
             )}
           </Container>
